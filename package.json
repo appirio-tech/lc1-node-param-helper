@@ -6,9 +6,9 @@
   "contributors": [],
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/spanhawk/serenity-param-helper.git"
+    "url": "https://github.com/riteshsangwan/serenity-param-helper.git"
   },
-  "homepage": "https://github.com/riteshsangwan",
+  "homepage": "https://github.com/riteshsangwan/serenity-param-helper",
   "keywords": [
     "serenity"
   ],
