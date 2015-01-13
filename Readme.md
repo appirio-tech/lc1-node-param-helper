@@ -14,6 +14,14 @@ List of methods
 Each of the method takes last argument as next function. This function is passed an error object in case error occured. Applicaiton should handle this error condition.
 Applications can add an global error handler middleware to process this error and return to client.
 
+### How to install?
+
+Install via npm and git
+
+```
+npm install git+https://github.com/riteshsangwan/serenity-param-helper.git
+```
+
 ### How to use?
 
 Add the module to your file via ```require```
