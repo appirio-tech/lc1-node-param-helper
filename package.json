@@ -6,9 +6,9 @@
   "contributors": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/riteshsangwan/serenity-param-helper.git"
+    "url": "https://github.com/appirio-tech/lc1-node-param-helper.git"
   },
-  "homepage": "https://github.com/riteshsangwan/serenity-param-helper",
+  "homepage": "https://github.com/appirio-tech/lc1-node-param-helper",
   "keywords": [
     "serenity"
   ],
