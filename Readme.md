@@ -19,7 +19,7 @@ Applications can add an global error handler middleware to process this error an
 Install via npm and git
 
 ```
-npm install git+https://github.com/riteshsangwan/serenity-param-helper.git
+npm install git+https://github.com/appirio-tech/lc1-node-param-helper.git
 ```
 
 ### How to use?
@@ -27,7 +27,7 @@ npm install git+https://github.com/riteshsangwan/serenity-param-helper.git
 Add the module to your file via ```require```
 
 ```
-var paramHelper = require('serenity-param-helper');
+var paramHelper = require('lc1-node-param-helper');
 ```
 
 ### Examples
@@ -35,7 +35,7 @@ var paramHelper = require('serenity-param-helper');
 In any controller file
 
 ```
-var paramHelper = require('serenity-param-helper');
+var paramHelper = require('lc1-node-param-helper');
 // some controller logic
 
 // Some route handler funtion
