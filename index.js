@@ -9,7 +9,7 @@
  */
 
 var _ = require('lodash');
-var ValidationError = require('./errors/ValidationError');
+var errors = require('common-errors');
 
 /**
  * Set a field=value filter to filters.
@@ -51,11 +51,11 @@ function _setFilter(filters, operator, field, value) {
 exports.parseFilter = function(model, req, filters, filterParam, next) {
   var error;
   if (!filterParam) {
-    error = new ValidationError('The value of filter parameter is empty');
+    error = new errors.ValidationError('The value of filter parameter is empty');
     return next(error);
   }
   if (filterParam instanceof Array) {
-    error = new ValidationError('Multiple filters parameters are provided, only one filter is supported');
+    error = new errors.ValidationError('Multiple filters parameters are provided, only one filter is supported');
     return next(error);
   }
   if (filterParam) {
@@ -75,17 +75,17 @@ exports.parseFilter = function(model, req, filters, filterParam, next) {
           if (_.keys(model.rawAttributes).indexOf(field) > -1) {
             _setFilter(filters, operator, field, value);
           } else {
-            error = new ValidationError('The ' + field + ' is not a valid field in the ' + model.name);
+            error = new errors.ValidationError('The ' + field + ' is not a valid field in the ' + model.name);
             return next(error);
           }
         }
       } else {
-        error = new ValidationError('The ' + filter + ' is not a valid filter');
+        error = new errors.ValidationError('The ' + filter + ' is not a valid filter');
         return next(error);
       }
     });
   } else {
-    error = new ValidationError('The filter is empty');
+    error = new errors.ValidationError('The filter is empty');
     return next(error);
   }
 };
@@ -100,17 +100,17 @@ exports.parseFilter = function(model, req, filters, filterParam, next) {
 exports.parseLimitOffset = function(req, filters, key, value, next) {
   var error;
   if (!value) {
-    error = new ValidationError('The value of ' + key + ' parameter is empty');
+    error = new errors.ValidationError('The value of ' + key + ' parameter is empty');
     return next(error);
   }
   if (value && value instanceof Array) {
-    error = new ValidationError('Multiple '+ key +' parameters are provided, only one ' + key + ' is supported');
+    error = new errors.ValidationError('Multiple '+ key +' parameters are provided, only one ' + key + ' is supported');
     return next(error);
   }
   var intValue = Number(value);
   // If value has non-digit at the end, the value becomes NaN, for example '123Abc' becomes NaN.
   if (!_.isNumber(intValue) || _.isNaN(intValue)) {
-    error = new ValidationError('The ' + value + ' is not a valid number');
+    error = new errors.ValidationError('The ' + value + ' is not a valid number');
     return next(error);
   }
   filters[key] = intValue;
@@ -126,27 +126,27 @@ exports.parseLimitOffset = function(req, filters, key, value, next) {
 exports.parseOrderBy = function(model, req, filters, orderParam, next) {
   var error;
   if (!orderParam) {
-    error = new ValidationError('The value of orderBy parameter is empty');
+    error = new errors.ValidationError('The value of orderBy parameter is empty');
     return next(error);
   }
   if (orderParam instanceof Array) {
-    error = new ValidationError('Multiple orderBy parameters are provided, only one orderBy is supported');
+    error = new errors.ValidationError('Multiple orderBy parameters are provided, only one orderBy is supported');
     return next(error);
   }
   var orderParts = orderParam.split(/\s+/);
   if (_.keys(model.rawAttributes).indexOf(orderParts[0]) === -1) {
-    error = new ValidationError('The ' + orderParts[0] + ' is not a valid field in the ' + model.name);
+    error = new errors.ValidationError('The ' + orderParts[0] + ' is not a valid field in the ' + model.name);
     return next(error);
   }
   var orderFilter = '"'+orderParts[0]+'"';
   if (orderParts.length === 3) {
-    error = new ValidationError('Invalid orderBy parameter: ' + orderParam);
+    error = new errors.ValidationError('Invalid orderBy parameter: ' + orderParam);
     return next(error);
   }
   // only asc or desc is supported
   if (orderParts[1]) {
     if (orderParts[1].toLowerCase() !== 'desc' && orderParts[1].toLowerCase() !== 'asc') {
-      error = new ValidationError('The ' + orderParts[1] + ' is not supprted in orderBy parameter');
+      error = new errors.ValidationError('The ' + orderParts[1] + ' is not supported in orderBy parameter');
       return next(error);
     }
     orderFilter += ' ' + orderParts[1];
@@ -154,11 +154,11 @@ exports.parseOrderBy = function(model, req, filters, orderParam, next) {
   // validate [nulls {first|last}]
   if (orderParts.length === 4) {
     if (orderParts[2].toLowerCase() !== 'nulls') {
-      error = new ValidationError('The ' + orderParts[2] + ' is not supprted in orderBy parameter');
+      error = new errors.ValidationError('The ' + orderParts[2] + ' is not supported in orderBy parameter');
       return next(error);
     }
     if (orderParts[3].toLowerCase() !== 'first' && orderParts[3].toLowerCase() !== 'last') {
-      error = new ValidationError('The ' + orderParts[3] + ' is not supprted in orderBy parameter');
+      error = new errors.ValidationError('The ' + orderParts[3] + ' is not supported in orderBy parameter');
       return next(error);
     }
     orderFilter += ' ' + orderParts[2] + ' ' + orderParts[3];
