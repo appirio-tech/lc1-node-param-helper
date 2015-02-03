@@ -11,7 +11,7 @@ List of methods
 - parseOrderBy
 - parseFilter
 
-Each of the method takes last argument as next function. This function is passed an error object in case error occured. Applicaiton should handle this error condition.
+Each of the method takes last argument as next function. This function is passed an error object in case error occurred. Application should handle this error condition.
 Applications can add an global error handler middleware to process this error and return to client.
 
 ### How to install?
@@ -19,7 +19,7 @@ Applications can add an global error handler middleware to process this error an
 Install via npm and git
 
 ```
-npm install git+https://github.com/appirio-tech/lc1-node-param-helper.git
+npm install serenity-param-helper
 ```
 
 ### How to use?
@@ -27,7 +27,7 @@ npm install git+https://github.com/appirio-tech/lc1-node-param-helper.git
 Add the module to your file via ```require```
 
 ```
-var paramHelper = require('lc1-node-param-helper');
+var paramHelper = require('serenity-param-helper');
 ```
 
 ### Examples
@@ -35,7 +35,7 @@ var paramHelper = require('lc1-node-param-helper');
 In any controller file
 
 ```
-var paramHelper = require('lc1-node-param-helper');
+var paramHelper = require('serenity-param-helper');
 // some controller logic
 
 // Some route handler funtion
